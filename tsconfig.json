@@ -1,15 +1,13 @@
 {
-  "compilerOptions": 
-    {
+  "compilerOptions": {
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
     "target": "ES2024",
     "lib": ["ES2024"],
-    
     "module": "nodenext",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    
-      
     "strict": true,
     "skipDefaultLibCheck": true
-    }
   }
+}

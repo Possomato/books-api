@@ -1,12 +1,13 @@
-import Express from "express";
+import Express from 'express'
+import { routes } from './routes'
 
 const app = Express()
 
 const PORT = 8080
 
-app.get('/', (req, res) => {
-  res.send('hello books')
-})
+app.use(Express.json())
+
+app.use(routes)
 
 app.listen(PORT)
 
