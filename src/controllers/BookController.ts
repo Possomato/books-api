@@ -52,4 +52,18 @@ export class BookController {
       res.status(500).send(`Erro ao ler arquivo: ${error}`)
     }
   }
+
+  async delete(req: Request, res: Response) {
+    const { id } = req.params
+
+    try {
+      const data = await fs.readFile(fileUrl, 'utf-8')
+      let books = JSON.parse(data)
+
+      const newBooks = books.filter((item: any) => item.id !== id)
+
+      await fs.writeFile(fileUrl, JSON.stringify(newBooks, null, 2), 'utf-8')
+      res.send(newBooks)
+    } catch (error) {}
+  }
 }
