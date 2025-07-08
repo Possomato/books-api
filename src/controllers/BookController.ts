@@ -37,16 +37,19 @@ export class BookController {
   async show(req: Request, res: Response) {
     const { id } = req.params
 
-    const data = await fs.readFile(fileUrl, 'utf-8')
-    const books = JSON.parse(data)
+    try {
+      const data = await fs.readFile(fileUrl, 'utf-8')
+      const books = JSON.parse(data)
 
-    const bookSearch = books.find((item: any) => item.id === id)
+      const bookSearch = books.find((item: any) => item.id === id)
 
-    if (bookSearch){
-      res.send(bookSearch)
-    } else{
-      res.send(`${id} não encontrado`)
+      if (bookSearch) {
+        res.send(bookSearch)
+      } else {
+        res.send(`${id} não encontrado`)
+      }
+    } catch (error) {
+      res.status(500).send(`Erro ao ler arquivo: ${error}`)
     }
-
   }
 }
